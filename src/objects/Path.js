@@ -55,9 +55,10 @@ export default class Path extends Vector {
     let {object} = this.props;
     let fill = (object.closed ? object.fill
                               : "transparent");
+    const { closed, moveX, moveY, ...restAttributes } = this.getObjectAttributes();
     return (
       <path style={this.getStyle(object)}
-         {...this.getObjectAttributes()}
+         {...restAttributes}
          d={this.buildPath(object)}
          fill={fill} />
     );
