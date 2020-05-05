@@ -32,10 +32,10 @@ export default class Vector extends Component {
   }
 
   getObjectAttributes() {
-    let {object, onRender, ...rest} = this.props;
+    let { object: { closed, moveX, moveY, blendMode, ...restObjProps }, onRender, ...rest} = this.props;
     return {
-      ...object,
-      transform: this.getTransformMatrix(object),
+      ...restObjProps,
+      transform: this.getTransformMatrix(restObjProps),
       ref: onRender,
       ...rest
     };

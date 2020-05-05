@@ -43,7 +43,6 @@ class SVGRenderer extends Component {
          width={width}
          height={height}
          style={style}
-         isroot={true}
          >
         {objects.map(this.renderObject.bind(this))}
       </svg>

@@ -11,8 +11,7 @@ function ScaleAnchor(props) {
   let [anchorHovered, setAnchorHovered] = useState(false);
   return (
     <div style={{...styles.anchor,
-                 ...anchorHovered ? styles.anchorHovered : {},
-                 ...styles.scaleAnchor,
+                 ...styles.scaleAnchor(anchorHovered),
                  ...style}}
          className={'resize-anchor'}
          onMouseOver={() => setAnchorHovered(true)}
@@ -28,8 +27,7 @@ function RotateAnchor(props) {
   let [anchorHovered, setAnchorHovered] = useState(false);
   return (
     <div style={{...styles.anchor,
-                 ...anchorHovered ? styles.anchorHovered : {},
-                 ...styles.rotateAnchor,
+                 ...styles.rotateAnchor(anchorHovered),
                  ...style}}
          className={'rotate-anchor'}
          onMouseOver={() => setAnchorHovered(true)}
@@ -88,24 +86,21 @@ const styles = {
     'width': 10,
     'height': 10
   },
-  anchorHovered: {
-    'borderColor': 'gray'
-  },
-  scaleAnchor: {
-    'marginTop': -3,
-    'borderRight': '2px solid #dedede',
-    'borderBottom': '2px solid #dedede',
-    'position': 'absolute',
-    'zIndex': -1
-  },
-  rotateAnchor: {
-    'marginTop': -8,
-    'borderRight': '2px solid #dedede',
-    'borderTop': '2px solid #dedede',
-    'position': 'absolute',
-    'borderTopRightRadius': 3,
-    'zIndex': -1
-  }
+  scaleAnchor: (hovered) => ({
+    marginTop: -3,
+    borderRight: `2px solid ${hovered && 'gray' || '#dedede'}`,
+    borderBottom: `2px solid ${hovered && 'gray' || '#dedede'}`,
+    position: 'absolute',
+    zIndex: -1
+  }),
+  rotateAnchor: (hovered) => ({
+    marginTop: -8,
+    borderRight: `2px solid ${hovered && 'gray' || '#dedede'}`,
+    borderTop: `2px solid ${hovered && 'gray' || '#dedede'}`,
+    position: 'absolute',
+    borderTopRightRadius: 3,
+    zIndex: -1
+  })
 };
 
 export default Handler;
